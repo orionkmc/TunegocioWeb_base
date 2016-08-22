@@ -70,5 +70,11 @@
     (7, 'cliente feliz', 'btn btn-default', 'glyphicon glyphicon-minus'),
     (8, 'cliente perdido', '', ' glyphicon glyphicon-thumbs-down'); ");
 
+    /*CREATE TRIGGER user AFTER INSERT ON wp_users
+    FOR EACH ROW 
+        BEGIN
+            INSERT INTO wp_tnw_crm_contact (name, status, id_wp) VALUES (NEW.user_login,'1', NEW.ID);
+            INSERT INTO wp_tnw_crm_email (email, contact) VALUES (NEW.user_email, LAST_INSERT_ID( ));
+        END;&&*/
     //$wpdb->query("CREATE TRIGGER user AFTER INSERT ON wp_users FOR EACH ROW  BEGIN INSERT INTO wp_tnw_crm_contact (name, status, id_wp) VALUES (NEW.user_login, 1,  NEW.ID) INSERT INTO wp_tnw_crm_email (email, subscriber) VALUES (NEW.user_email, LAST_INSERT_ID( )) END;";
 ?>
