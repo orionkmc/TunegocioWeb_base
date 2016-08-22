@@ -1,6 +1,6 @@
 <?php
 /**
-* Plugin Name: Tnw crm base
+* Plugin Name: TunegocioWeb crm
 * Plugin URI: https://localhost
 * Description: CRM
 * Version: 1.0.0
