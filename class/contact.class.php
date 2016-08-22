@@ -58,7 +58,7 @@ class Contact
         global $wpdb;
         $menu = array(
             'binacle-panel' => array(
-                'title' => 'Bitacora',
+                'title' => 'Comentarios',
                 'callback' => 'binacle',
                 'status' => 'active',
                 'route' => TNW_PLUGIN_DIR. 'view/contacts/binacle.php'
