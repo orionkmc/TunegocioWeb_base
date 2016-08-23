@@ -84,10 +84,12 @@ class Contact
     public function form_status(){
         global $wpdb;
         global $current_user;
+
         extract($_POST);
         date_default_timezone_set('America/Caracas');
         $date_time = $date ." ". $hour;
         $date = date("Y-m-d H:i:s", time());
+        
         if ( $date_time == " " ) {
             $wpdb->query("UPDATE `wp_tnw_crm_contact` SET `status` = '$status', `date` = NULL WHERE `id` = $contact;");
         }
