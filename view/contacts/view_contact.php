@@ -24,12 +24,11 @@
 
         $j('[data-toggle="popover"]').on('hidden.bs.popover', function(){
             $j(".reminder").empty();
-        }); 
+        });
     })
 </script>
 <div class="panel panel-primary" style="width: 99%; margin-top: 20px;">
     <div class="panel-heading">
-        <h3 class="panel-title" ><?= $contacts[0]->name ?></h3>
         <a id="example-popover-2" tabindex="0" class="<?= $contacts[0]->color ?>" role="button" data-toggle="popover" data-trigger="click" style="float: right;">
             <span class="<?= $contacts[0]->icon ?>" aria-hidden="true"></span>
             <strong> <?= strtoupper( $contacts[0]->status )?> </strong>
@@ -37,15 +36,32 @@
         <a  href="#" class=""></a>
     </div>
     <div class="panel-body">
-        <div>
-            Nombre: <?= $contacts[0]->name ?>
-        </div>
-        <div>
-            Email: <?= $contacts[0]->email ?>
-        </div>
-        <div>
-            Telef: <?= $contacts[0]->phone ?>
-        </div>
+        <p>
+            <div>
+                <h3 style="display:inline-block;"><label for="">Nombre: </label></h3> <?= $contacts[0]->name ?>
+            </div>
+            <div>
+                <h3 style="display:inline-block;"><label for="">Email: </label></h3>
+                <?php foreach ($contact_emails as $contact_email): ?>
+                    <span>
+                        <span data-type="email" data-id="<?= $contact_email->id ?>"><?= $contact_email->email ?></span>
+                        <a href="#" class="edit" onclick="return false;">
+                            <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                        </a>
+                    </span>
+                <?php endforeach ?>
+            </div>
+            <div>
+                <h3 style="display:inline-block;"><label for="">Telefono: </label></h3>
+                <?php foreach ($contact_phones as $contact_phone): ?>
+                    <span>
+                        <span data-type="phone" data-id="<?= $contact_phone->id ?>"><?= $contact_phone->phone ?></span>
+                        <a href="#" class="edit" onclick="return false;"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>
+                    </span>
+                <?php endforeach ?>
+            </div>
+            <div id="kua-mare"></div>
+        </p>
         <!-- Nav tabs -->
         <ul class="nav nav-tabs">
             <?php foreach ($menu as $key): ?>

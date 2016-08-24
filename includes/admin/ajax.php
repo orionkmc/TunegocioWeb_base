@@ -4,6 +4,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 final class TunegocioWebAjax {
+
     function insert_comment(){
         global $wpdb;
         global $current_user;
@@ -17,10 +18,9 @@ final class TunegocioWebAjax {
         die();
     }
 
-    function view(){
+    function edit_data_contact(){
         global $wpdb;
-        $all_status = $wpdb->get_results("SELECT * FROM `wp_tnw_crm_status` ", OBJECT);
-        echo "ver datos: ";
+        $wpdb->query("UPDATE wp_tnw_crm_". $_POST['type'] ." SET `". $_POST['type'] ."` = '". $_POST['value'] ."' WHERE `id` = ". $_POST['id'] .";");
         die();
     }
 }

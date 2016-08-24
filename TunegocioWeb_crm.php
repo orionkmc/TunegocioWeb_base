@@ -37,8 +37,8 @@ class Tnw_Crm
             include_once( TNW_PLUGIN_DIR.'includes/admin/admin.php' );
             include_once( TNW_PLUGIN_DIR.'includes/admin/ajax.php' );
             $ajax = new TunegocioWebAjax();
-            add_action( 'wp_ajax_view', array( $ajax, 'view' ) );
             add_action( 'wp_ajax_insert_comment', array( $ajax, 'insert_comment' ) );
+            add_action( 'wp_ajax_edit_data_contact', array( $ajax, 'edit_data_contact' ) );
             include_once( TNW_PLUGIN_DIR.'class/contact.class.php' );
         }
     }

@@ -2,7 +2,7 @@
 
 class Contact
 {
-    public function __construct($array)
+    public function __construct()
     {
         $this->update_pending_contacts();
     }
@@ -66,16 +66,18 @@ class Contact
             'wordpress-panel' => array(
                 'title' => 'Wordpress',
                 'callback' => 'user_wordpress',
+                'status' => '',
                 'route' => TNW_PLUGIN_DIR.'view/contacts/user_wordpress.php'
                 ),
         );
 
         $menu = apply_filters( 'tnw_editor_menus', $menu );
-        $contacts = $wpdb->get_results("SELECT a.id, a.name, a.id_wp, b.phone, c.email, d.id AS Id_status, d.name AS status, d.icon, d.color
-            FROM `wp_tnw_crm_contact` a LEFT JOIN `wp_tnw_crm_phone` b ON a.id = b.contact 
-            LEFT JOIN `wp_tnw_crm_email` c ON a.id = c.contact 
+        $contacts = $wpdb->get_results("SELECT a.id, a.name, a.id_wp, d.id AS Id_status, d.name AS status, d.icon, d.color
+            FROM `wp_tnw_crm_contact` a 
             LEFT JOIN `wp_tnw_crm_status` d ON a.status = d.id 
             WHERE a.id =". $_REQUEST['id'], OBJECT);
+        $contact_emails = $wpdb->get_results("SELECT id, email FROM `wp_tnw_crm_email` WHERE contact =". $_REQUEST['id'], OBJECT);
+        $contact_phones = $wpdb->get_results("SELECT id, phone FROM `wp_tnw_crm_phone` WHERE contact =". $_REQUEST['id'], OBJECT);
         $all_status = $wpdb->get_results("SELECT * FROM `wp_tnw_crm_status` ", OBJECT);
         date_default_timezone_set('America/caracas');
         include_once( TNW_PLUGIN_DIR.'view/contacts/view_contact.php' );

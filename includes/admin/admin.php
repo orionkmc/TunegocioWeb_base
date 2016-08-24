@@ -29,7 +29,7 @@ final class WPTnwCrmAdmin {
 
     function contacts()
     {
-        $contacts = new Contact($array);
+        $contacts = new Contact();
         if (isset($_POST['export_contact'])) {
             $contacts->export_contact();
         }
