@@ -7,7 +7,7 @@
     <div class="col-md-12">
         <p>
             <label for="textarea_comment"> Agregar Comentario </label>
-            <textarea name="comment" id="textarea_comment" class="form-control"></textarea>
+            <textarea placeholder="Registre su actividad o un comentario aqui…" name="comment" id="textarea_comment" class="form-control"></textarea>
         </p>
         <input id="contact_comment" type="hidden" name="contact" value="<?= $contacts[0]->id ?>">
         <input type="submit" id="btn_comentario" class="btn btn-primary btn-block" name="form_status" value="Guardar comentario">

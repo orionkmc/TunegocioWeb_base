@@ -77,9 +77,12 @@ class Contact
             FROM `wp_tnw_crm_contact` a 
             LEFT JOIN `wp_tnw_crm_status` d ON a.status = d.id 
             WHERE a.id =". $_REQUEST['id'], OBJECT);
-        $contact_emails = $wpdb->get_results("SELECT id, email FROM `wp_tnw_crm_email` WHERE contact =". $_REQUEST['id'], OBJECT);
-        $contact_phones = $wpdb->get_results("SELECT id, phone FROM `wp_tnw_crm_phone` WHERE contact =". $_REQUEST['id'], OBJECT);
-        $all_status = $wpdb->get_results("SELECT * FROM `wp_tnw_crm_status` ", OBJECT);
+
+        $contact_emails  = $wpdb->get_results("SELECT id, email FROM `wp_tnw_crm_email` WHERE contact =". $_REQUEST['id'], OBJECT);
+        $contact_phones  = $wpdb->get_results("SELECT id, phone FROM `wp_tnw_crm_phone` WHERE contact =". $_REQUEST['id'], OBJECT);
+
+        $statuses_categorys = $wpdb->get_results("SELECT * FROM `{$wpdb->prefix}tnw_crm_category_status` ", OBJECT);
+        $all_status      = $wpdb->get_results("SELECT * FROM `{$wpdb->prefix}tnw_crm_status` ", OBJECT);
         date_default_timezone_set('America/caracas');
         include_once( TNW_PLUGIN_DIR.'view/contacts/view_contact.php' );
     }
@@ -92,7 +95,7 @@ class Contact
         date_default_timezone_set('America/Caracas');
         $date_time = $date ." ". $hour;
         $date = date("Y-m-d H:i:s", time());
-        
+
         if ( $date_time == " " ) {
             $wpdb->query("UPDATE `wp_tnw_crm_contact` SET `status` = '$status', `date` = NULL WHERE `id` = $contact;");
         }
