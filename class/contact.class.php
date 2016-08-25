@@ -48,7 +48,8 @@ class Contact
         global $wpdb;
         $contacts = $wpdb->get_results("SELECT a.name, a.id, b.phone, c.email FROM `wp_tnw_crm_contact` a
             LEFT JOIN `wp_tnw_crm_phone` b ON a.id = b.contact
-            LEFT JOIN `wp_tnw_crm_email` c ON a.id = c.contact", OBJECT);
+            LEFT JOIN `wp_tnw_crm_email` c ON a.id = c.contact
+            GROUP BY a.id", OBJECT);
 
         include_once( TNW_PLUGIN_DIR.'view/contacts/all_contacts.php' );
     }
