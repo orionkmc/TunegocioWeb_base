@@ -16,8 +16,6 @@
         });
     })
 </script>
-
-
 <div class="panel panel-primary" style="width: 99%; margin-top: 20px;">
     <div class="panel-heading">
         <h4 style="display:inline-block;">Tarjeta de Contacto</h4>
