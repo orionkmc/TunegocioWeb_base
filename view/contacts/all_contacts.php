@@ -1,4 +1,3 @@
-<div class="tnw">
     <div class="panel panel-info" style="width: 99%; margin-top: 20px;">
         <div class="panel-heading">
             <form action="admin.php?page=contacts" method="post">
@@ -69,4 +68,3 @@
         </table>
         </div>
     </div>
-</div>
