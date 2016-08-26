@@ -66,10 +66,8 @@ $k(document).ready(function(){
             var status_color       = $k('#'+ id_status_new).data("color");
             var status_icon        = $k('#'+ id_status_new).data("icon");
             var status_status      = $k('#'+ id_status_new).data("status");
+            $k('#status_contact').attr("value", status_new );
 
-            console.log( status_color );
-            console.log( status_icon );
-            console.log( status_status );
             html = '<a href="#" class="btn '+ status_color +'" data-toggle="modal" data-target="#myModal" style="float: right;">'+
                         '<span class="'+ status_icon +'" aria-hidden="true"></span>'+
                         '<strong> '+ status_status +' </strong>'+
