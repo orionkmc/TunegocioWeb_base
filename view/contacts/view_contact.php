@@ -28,10 +28,10 @@
     </div>
     <div class="panel-body">
         <div>
-            <h3 style="display:inline-block;"><label for="">Nombre: </label></h3> <?= $contacts[0]->name ?>
+            <label for="">Nombre: </label> <?= $contacts[0]->name ?>
         </div>
         <div>
-            <h3 style="display:inline-block;"><label for="">Email: </label></h3>
+            <label for="">Email: </label>
             <?php foreach ($contact_emails as $contact_email): ?>
                 <span>
                     <span data-type="email" data-id="<?= $contact_email->id ?>"><?= $contact_email->email ?></span>
@@ -42,7 +42,7 @@
             <?php endforeach ?>
         </div>
         <div>
-            <h3 style="display:inline-block;"><label for="">Telefono: </label></h3>
+            <label for="">Telefono: </label>
             <?php foreach ($contact_phones as $contact_phone): ?>
                 <span>
                     <span data-type="phone" data-id="<?= $contact_phone->id ?>"><?= $contact_phone->phone ?></span>
