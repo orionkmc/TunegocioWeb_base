@@ -2,7 +2,7 @@
         <div class="panel-heading">
             <form action="admin.php?page=contacts" method="post">
                 <span class="panel-title"> Todos los contactos </span>
-                <input type="submit" class="btn btn-default btn-xs" name="export_contact" value="Importar contactos">
+                <input type="submit" class="btn btn-default" name="export_contact" value="Importar contactos">
             </form>
             <span style="float: right; margin-top: -19px;"></span>
         </div>

@@ -1,17 +1,17 @@
 <script>
     var $j = jQuery.noConflict();
     $j(function () {
-        /*$j( document ).on( "click", "#cb_status_2, #cb_status_6", function() {
+        $j( document ).on( "click", ".reschedule", function() {
             html = '<hr class="m50">' +
             '<p class="text-error">¡Nunca pierda un lead! Standby significa Recordatorio.</p>' +
             '<input type="date" name="date" value="">'+
             '<input type="time" name="hour" value="" max="22:30" min="10:00">';
-            $j(".reminder").html(html);
+            $j("#reminder").html(html);
         });
 
         $j( document ).on( "click", "#cb_status_1, #cb_status_3, #cb_status_4, #cb_status_5, #cb_status_7, #cb_status_8", function() {
-            $j(".reminder").empty();
-        });*/
+            $j("#reminder").empty();
+        });
     })
 </script>
 
@@ -27,14 +27,23 @@
         </span>
     </div>
     <div class="panel-body">
+        <span id="result">
+            
+        </span>
         <div>
-            <label for="">Nombre: </label> <?= $contacts[0]->name ?>
+            <label for="">Nombre: </label>
+            <span>
+                <span data-type="contact" data-name="<?= $contacts[0]->name ?>" data-id="<?= $contacts[0]->id ?>"><?= $contacts[0]->name ?></span>
+                <a href="#" class="edit" onclick="return false;">
+                    <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                </a>
+            </span>
         </div>
         <div>
             <label for="">Email: </label>
             <?php foreach ($contact_emails as $contact_email): ?>
                 <span>
-                    <span data-type="email" data-id="<?= $contact_email->id ?>"><?= $contact_email->email ?></span>
+                    <span data-type="email" data-name="<?= $contacts[0]->name ?>" data-id="<?= $contact_email->id ?>"><?= $contact_email->email ?></span>
                     <a href="#" class="edit" onclick="return false;">
                         <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
                     </a>
@@ -45,12 +54,12 @@
             <label for="">Telefono: </label>
             <?php foreach ($contact_phones as $contact_phone): ?>
                 <span>
-                    <span data-type="phone" data-id="<?= $contact_phone->id ?>"><?= $contact_phone->phone ?></span>
+                    <span data-type="phone" data-name="<?= $contacts[0]->name ?>" data-id="<?= $contact_phone->id ?>"><?= $contact_phone->phone ?></span>
                     <a href="#" class="edit" onclick="return false;"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>
                 </span>
             <?php endforeach ?>
         </div>
-
+<br>
         <!-- Nav tabs -->
         <ul class="nav nav-tabs">
             <?php foreach ($menu as $key): ?>
@@ -83,13 +92,14 @@
                             <?php foreach ($all_status as $status): ?>
                                 <?php if ( $category_status->id == $status->category): ?>
                                     <label id="label_status_<?= $status->id ?>" for="cb_status_<?= $status->id ?>">
-                                        <span id="status_<?= $status->id ?>" class="btn <?= ($contacts[0]->Id_status == $status->id) ? $status->color : 'btn-default'?>" data-color="<?= $status->color ?>">
+                                        <span id="status_<?= $status->id ?>" class="btn <?= ($contacts[0]->Id_status == $status->id) ? $status->color : 'btn-default'?> reschedule" data-color="<?= $status->color ?>">
                                         <i class="<?= $status->icon ?>"></i> <?= $status->name ?></span>
                                         <input id="cb_status_<?= $status->id ?>" type="radio" name="status" value="<?= $status->id ?>" class="hidden"  <?= ($contacts[0]->Id_status == $status->id) ? 'checked="checked"' : ''?> data-icon="<?= $status->icon ?>" data-status="<?= $status->name ?>" data-color="<?= $status->color ?>">
                                     </label>
                                 <?php endif ?>
                             <?php endforeach ?>
                         </fieldset>
+                        <br>
                     <?php endforeach ?>
                 </ul>
 

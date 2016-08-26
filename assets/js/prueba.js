@@ -6,22 +6,36 @@ $k(document).ready(function(){
     $k( document ).on( "click", ".edit", function() {
         email = $k( this ).siblings("span").html();
         type  = $k( this ).siblings("span").data("type");
-        id  = $k( this ).siblings("span").data("id");
+        id    = $k( this ).siblings("span").data("id");
+        name  = $k( this ).siblings("span").data("name");
         
         $k( this ).siblings("span").attr("class", "form-inline");
-        html = '<input id="input_edit" class="form-control" name="input_edit" value="'+email+'" autofocus>';
+        html = '<input id="input_edit" class="form-control" name="input_edit" value="'+email+'" data-name="'+ name +'" autofocus>';
         $k( this ).siblings("span").html(html);
         $k( "input#input_edit" ).focus();
         $k( this ).remove();
     });
 
     //edita de campos telefono y email. Convierte el input en datos planos
+    $k( document ).on( "keyup", "input#input_edit", function(e) {
+        if(e.keyCode == 13)
+        {
+            value = $k( this ).val();
+            if (email != value) {
+                edit_data_contact(type, value, id)
+            };
+            html =  '<span data-type="'+ type +'" data-id="'+ id +'">'+ value +'</span>&nbsp'+
+                    '<a href="#" class="edit" onclick="return false;">'+
+                        '<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>'+
+                    '</a>';
+            $k( this ).parent('span').parent('span').html( html );
+        }
+    });
+
+    //convierte los datos de input a datos planos
     $k( document ).on( "blur", "input#input_edit", function() {
-        value = $k( this ).val();
-        if (email != value) {
-            edit_data_contact(type, value, id)
-        };
-        html =  '<span data-type="'+ type +'" data-id="'+ id +'">'+ value +'</span>&nbsp'+
+        value = $k( this ).data("name");
+        html =  '<span data-type="'+ type +'" data-name="'+ value +'"data-id="'+ id +'">'+ value +'</span>&nbsp'+
                 '<a href="#" class="edit" onclick="return false;">'+
                     '<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>'+
                 '</a>';
@@ -49,7 +63,7 @@ $k(document).ready(function(){
     //cambia los colores de estatus en la modal
     $k( document ).on( "click", "span.btn", function() {
         var color = $k( this ).data("color");
-        $k( "span.btn" ).attr("class", "btn btn-default");
+        $k( "span.btn" ).attr("class", "btn btn-default reschedule");
         $k( this ).attr("class", "btn "+color);
     });
 
@@ -103,7 +117,25 @@ function edit_data_contact( type, value, id ){
         'value': value,
         'id': id
     };
-    jQuery.post("admin-ajax.php", data, function(response) {});
+    jQuery.post("admin-ajax.php", data, function(response) {
+
+        
+
+        html = '<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>'+
+        '<strong>¡Exelente!</strong> El Registro ha sido modificado con Exito.';
+
+        liData ='<div id="result2" class="alert alert-success alert-dismissible" role="alert" style="display:none;">'+
+                '</div>';
+        $k(liData).appendTo('#result').slideDown(500);
+
+        $k('#result2').html(html).fadeIn(2000);
+        //timing the alert box to close after 5 seconds
+        window.setTimeout(function () {
+            $k(".alert").fadeTo(500, 0).slideUp(500, function () {
+                $k(this).remove();
+            });
+        }, 3000);
+    });
 }
 
 function insert_comment(comment, contact){

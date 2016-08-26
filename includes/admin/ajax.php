@@ -20,7 +20,12 @@ final class TunegocioWebAjax {
 
     function edit_data_contact(){
         global $wpdb;
-        $wpdb->query("UPDATE wp_tnw_crm_". $_POST['type'] ." SET `". $_POST['type'] ."` = '". $_POST['value'] ."' WHERE `id` = ". $_POST['id'] .";");
+        if ($_POST['type'] == 'contact') {
+            $wpdb->query("UPDATE wp_tnw_crm_". $_POST['type'] ." SET `name` = '". $_POST['value'] ."' WHERE `id` = ". $_POST['id'] .";");    
+        }
+        else{
+            $wpdb->query("UPDATE wp_tnw_crm_". $_POST['type'] ." SET `". $_POST['type'] ."` = '". $_POST['value'] ."' WHERE `id` = ". $_POST['id'] .";");
+        }
         die();
     }
 
