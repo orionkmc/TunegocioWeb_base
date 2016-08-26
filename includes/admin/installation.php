@@ -69,11 +69,11 @@
     $wpdb->query("ALTER TABLE {$wpdb->prefix}tnw_crm_binnacle ADD FOREIGN KEY (`contact`) REFERENCES {$wpdb->prefix}tnw_crm_contact(`id`) ON DELETE CASCADE ON UPDATE CASCADE");
     $wpdb->query("ALTER TABLE {$wpdb->prefix}tnw_crm_comments ADD FOREIGN KEY (`contact`) REFERENCES {$wpdb->prefix}tnw_crm_contact(`id`) ON DELETE CASCADE ON UPDATE CASCADE");
 
-    $wpdb->query("INSERT INTO `{$wpdb->prefix}tnw_crm_category_status` (`id`, `name`) VALUES 
-        (NULL, 'Potenciales'), 
-        (NULL, 'Clientes');");
+    $wpdb->query("INSERT IGNORE INTO `{$wpdb->prefix}tnw_crm_category_status` (`id`, `name`) VALUES 
+        (1, 'Potenciales'), 
+        (2, 'Clientes');");
 
-    $wpdb->query(" INSERT INTO `{$wpdb->prefix}tnw_crm_status` (`id`, `name`, `color`, `icon`, `category`) VALUES
+    $wpdb->query(" INSERT IGNORE INTO `{$wpdb->prefix}tnw_crm_status` (`id`, `name`, `color`, `icon`, `category`) VALUES
         (1, 'hacer ya!',        'btn-danger',  'glyphicon glyphicon-exclamation-sign', '1'),
         (2, 'pendiente',        'btn-info',    'glyphicon glyphicon-time', '1'),
         (3, 'neutral',          'btn-default', 'glyphicon glyphicon-minus', '1'),
