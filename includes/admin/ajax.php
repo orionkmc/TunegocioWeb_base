@@ -31,7 +31,7 @@ final class TunegocioWebAjax {
 
     function update_status(){
         global $wpdb;
-        $wpdb->query( "UPDATE wp_tnw_crm_contact SET `status` = '". $_POST['status'] ."' WHERE `id` = ". $_POST['contact'] .";" );
+        $wpdb->query( "UPDATE wp_tnw_crm_contact SET `status` = '". $_POST['status'] ."', `date` = '". $_POST['date'] ."' WHERE `id` = ". $_POST['contact'] .";" );
         die();
     }
 }

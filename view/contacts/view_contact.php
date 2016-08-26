@@ -1,16 +1,18 @@
 <script>
     var $j = jQuery.noConflict();
     $j(function () {
+        $j('#datetimepicker1').datetimepicker({
+            format: 'YYYY-MM-D HH:mm:ss',
+            locale: 'es',
+            daysOfWeekDisabled: [0, 6]
+        });
+
         $j( document ).on( "click", ".reschedule", function() {
-            html = '<hr class="m50">' +
-            '<p class="text-error">¡Nunca pierda un lead! Standby significa Recordatorio.</p>' +
-            '<input type="date" name="date" value="">'+
-            '<input type="time" name="hour" value="" max="22:30" min="10:00">';
-            $j("#reminder").html(html);
+            $j("#reminder").removeClass("hidden");
         });
 
         $j( document ).on( "click", "#cb_status_1, #cb_status_3, #cb_status_4, #cb_status_5, #cb_status_7, #cb_status_8", function() {
-            $j("#reminder").empty();
+            $j("#reminder").addClass("hidden");
         });
     })
 </script>
@@ -79,12 +81,12 @@
     </div>
 </div>
 
-
 <!-- ---------------------------------------MODAL--------------------------------------- -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-body">
+
                 <ul class="status-selection m100">
                     <?php foreach ($statuses_categorys as $category_status): ?>
                         <fieldset>
@@ -103,10 +105,9 @@
                     <?php endforeach ?>
                 </ul>
 
-                <div id="reminder" class="reminder-block mb10">
-                    <?= ($contacts[0]->Id_status == '2' || $contacts[0]->Id_status == '6') ? '<hr class="m50">
-                    <p class="text-error">¡Nunca pierda un lead! Standby significa Recordatorio.</p>
-                    <input type="datetime-local" name="reminder">': '' ?>
+                <div id="reminder" class="reminder-block mb10 hidden">
+                    <h4>Re-agendado para el: </h4>
+                    <input id="datetimepicker1" type="text" class="form-control" name="kuai" value="">
                 </div>
 
                 <hr class="m50">

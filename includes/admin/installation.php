@@ -13,6 +13,7 @@
         `color` varchar(50) COLLATE utf8_spanish_ci,
         `icon` varchar(50) COLLATE utf8_spanish_ci,
         `category` int(11) NOT NULL COLLATE utf8_spanish_ci,
+        `reschedule` BOOLEAN NOT NULL,
         PRIMARY KEY (id),
         KEY `status` (`category`)
     )   ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci");
@@ -74,14 +75,14 @@
         (2, 'Clientes');");
 
     $wpdb->query(" INSERT IGNORE INTO `{$wpdb->prefix}tnw_crm_status` (`id`, `name`, `color`, `icon`, `category`) VALUES
-        (1, 'hacer ya!',        'btn-danger',  'glyphicon glyphicon-exclamation-sign', '1'),
-        (2, 'pendiente',        'btn-info',    'glyphicon glyphicon-time', '1'),
-        (3, 'neutral',          'btn-default', 'glyphicon glyphicon-minus', '1'),
-        (4, 'perdido',          'btn-sample',  'glyphicon glyphicon-thumbs-down', '1'),
-        (5, 'atender ya!',      'btn-success', 'glyphicon glyphicon-exclamation-sign', '2'),
-        (6, 'seguimiento',      'btn-warning', 'glyphicon glyphicon-time', '2'),
-        (7, 'cliente feliz',    'btn-default', 'glyphicon glyphicon-thumbs-up', '2'),
-        (8, 'cliente perdido',  'btn-sample',  'glyphicon glyphicon-thumbs-down', '2'); ");
+        (1, 'hacer ya!',        'btn-danger',  'glyphicon glyphicon-exclamation-sign', '1', '0'),
+        (2, 'pendiente',        'btn-info',    'glyphicon glyphicon-time', '1', '1'),
+        (3, 'neutral',          'btn-default', 'glyphicon glyphicon-minus', '1', '0'),
+        (4, 'perdido',          'btn-sample',  'glyphicon glyphicon-thumbs-down', '1', '0'),
+        (5, 'atender ya!',      'btn-success', 'glyphicon glyphicon-exclamation-sign', '2', '0'),
+        (6, 'seguimiento',      'btn-warning', 'glyphicon glyphicon-time', '2', '1'),
+        (7, 'cliente feliz',    'btn-default', 'glyphicon glyphicon-thumbs-up', '2', '0'),
+        (8, 'cliente perdido',  'btn-sample',  'glyphicon glyphicon-thumbs-down', '2', '0'); ");
 
     /*CREATE TRIGGER user AFTER INSERT ON wp_users
     FOR EACH ROW 

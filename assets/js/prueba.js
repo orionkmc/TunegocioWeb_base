@@ -77,6 +77,7 @@ $k(document).ready(function(){
         var contact                = $k('#id_contact').val();
 
         if (status != status_new) {
+            var date               = $k('#datetimepicker1').val();
             var status_color       = $k('#'+ id_status_new).data("color");
             var status_icon        = $k('#'+ id_status_new).data("icon");
             var status_status      = $k('#'+ id_status_new).data("status");
@@ -87,7 +88,7 @@ $k(document).ready(function(){
                         '<strong> '+ status_status +' </strong>'+
                     '</a>';
                     $k('#icon_status_panel').html(html);
-            update_status(status_new, contact);
+            update_status(status_new, contact, date);
         };
 
         if (textarea_comment_modal !== '') {
@@ -161,16 +162,14 @@ function insert_comment(comment, contact){
     });
 }
 
-
-function update_status(status, contact){
+function update_status(status, contact, date){
     var data = {
-        'action': 'update_status',
-        'status': status,
+        'action' : 'update_status',
+        'status' : status,
         'contact': contact,
+        'date'   : date,
         'page_no': page_no
     };
 
-    jQuery.post("admin-ajax.php", data, function(response) {
-        //jQuery('#kua-mare').html(response);
-    });
+    jQuery.post("admin-ajax.php", data, function(response) {});
 }
