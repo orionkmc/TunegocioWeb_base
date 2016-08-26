@@ -43,7 +43,7 @@
             <label for="">Email: </label>
             <?php foreach ($contact_emails as $contact_email): ?>
                 <span>
-                    <span data-type="email" data-name="<?= $contacts[0]->name ?>" data-id="<?= $contact_email->id ?>"><?= $contact_email->email ?></span>
+                    <span data-type="email" data-name="<?= $contact_email->email ?>" data-id="<?= $contact_email->id ?>"><?= $contact_email->email ?></span>
                     <a href="#" class="edit" onclick="return false;">
                         <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
                     </a>
@@ -54,7 +54,7 @@
             <label for="">Telefono: </label>
             <?php foreach ($contact_phones as $contact_phone): ?>
                 <span>
-                    <span data-type="phone" data-name="<?= $contacts[0]->name ?>" data-id="<?= $contact_phone->id ?>"><?= $contact_phone->phone ?></span>
+                    <span data-type="phone" data-name="<?= $contact_phone->phone ?>" data-id="<?= $contact_phone->id ?>"><?= $contact_phone->phone ?></span>
                     <a href="#" class="edit" onclick="return false;"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>
                 </span>
             <?php endforeach ?>
