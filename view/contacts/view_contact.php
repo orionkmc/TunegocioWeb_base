@@ -18,7 +18,7 @@
 </script>
 <div class="panel panel-primary" style="width: 99%; margin-top: 20px;">
     <div class="panel-heading">
-        <h4 style="display:inline-block;">Tarjeta de Contacto</h4>
+        <h4 style="display:inline-block;"><?= $contacts[0]->name ?></h4>
         <span id="icon_status_panel">
             <a href="#" class="btn <?= $contacts[0]->color ?>" data-toggle="modal" data-target="#myModal" style="float: right;">
                 <span class="<?= $contacts[0]->icon ?>" aria-hidden="true"></span>
@@ -49,6 +49,11 @@
                     </a>
                 </span>
             <?php endforeach ?>
+            <span class="form-inline">
+                <a href="#" class="plus" onclick="return false;" data-type="email">
+                    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                </a>
+            </span>
         </div>
         <div>
             <label for="">Telefono: </label>
@@ -58,6 +63,11 @@
                     <a href="#" class="edit" onclick="return false;"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>
                 </span>
             <?php endforeach ?>
+            <span class="form-inline">
+                <a href="#" class="plus" onclick="return false;" data-type="phone">
+                    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                </a>
+            </span>
         </div>
 <br>
         <!-- Nav tabs -->

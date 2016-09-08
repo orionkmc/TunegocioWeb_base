@@ -106,6 +106,51 @@ $k(document).ready(function(){
 
         $k('#myModal').modal("toggle");
     });
+
+    //boton de mas(+) en campos de formularios para agregar un nuevo registro
+    $k( document ).on( "click", ".plus", function() {
+        type  = $k( this ).data("type");
+
+        html = '<input id="input_add" class="form-control" name="input_add" value="" data-type="'+ type +'" autofocus>';
+        $k( this ).parent("span").html(html);
+        $k( "input#input_add" ).focus();
+    });
+
+    //inserta nuevo phone o email
+    $k( document ).on( "keyup", "input#input_add", function(e) {
+        if(e.keyCode == 13)
+        {
+            value = $k( this ).val();
+            type  = $k( this ).data("type");
+            contact = $k( "#contact_comment" ).val();
+
+            if (value != '') {
+                add_data_contact(type, value, contact)
+            };
+            htmlplus =  '&nbsp<span class="form-inline">'+
+                        '<a href="#" class="plus" onclick="return false;" data-type="'+ type +'">'+
+                            '<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>'+
+                        '</a>'+
+                    '</span>';
+            $k( "input#input_add" ).parent().parent().append(htmlplus);
+
+            html =  '<span data-type="'+ type +'" data-name="'+ value +'" data-id="">'+ value +'</span>&nbsp'+
+                    '<a href="#" class="edit" onclick="return false;">'+
+                        '<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>'+
+                    '</a>';
+            $k( this ).parent('span').removeAttr( "class" );
+            $k( this ).parent('span').html( html );
+        }
+    });
+
+    //convierte el input en boton mas(+)
+    $k( document ).on( "blur", "input#input_add", function() {
+        value = $k( this ).data("name");
+        html =  '<a href="#" class="plus" onclick="return false;">'+
+                    '<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>'+
+                '</a>';
+        $k( this ).parent('span').html( html );
+    });
 });
 
 
@@ -119,11 +164,34 @@ function edit_data_contact( type, value, id ){
         'id': id
     };
     jQuery.post("admin-ajax.php", data, function(response) {
-
-        
-
         html = '<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>'+
         '<strong>¡Exelente!</strong> El Registro ha sido modificado con Exito.';
+
+        liData ='<div id="result2" class="alert alert-success alert-dismissible" role="alert" style="display:none;">'+
+                '</div>';
+        $k(liData).appendTo('#result').slideDown(500);
+
+        $k('#result2').html(html).fadeIn(2000);
+        //timing the alert box to close after 5 seconds
+        window.setTimeout(function () {
+            $k(".alert").fadeTo(500, 0).slideUp(500, function () {
+                $k(this).remove();
+            });
+        }, 3000);
+    });
+}
+
+function add_data_contact(type, value, contact){
+    var data = {
+        'action': 'add_data_contact',
+        'type': type,
+        'value': value,
+        'contact': contact,
+    };
+
+    jQuery.post("admin-ajax.php", data, function(response) {
+        html = '<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>'+
+        '<strong>¡Exelente!</strong> El Registro se ha guardado con Exito.';
 
         liData ='<div id="result2" class="alert alert-success alert-dismissible" role="alert" style="display:none;">'+
                 '</div>';
