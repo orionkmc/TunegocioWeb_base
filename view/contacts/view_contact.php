@@ -47,6 +47,9 @@
                     <a href="#" class="edit" onclick="return false;">
                         <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
                     </a>
+                    <a href="#" class="trash">
+                        <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                    </a>
                 </span>
             <?php endforeach ?>
             <span class="form-inline">
@@ -61,6 +64,9 @@
                 <span>
                     <span data-type="phone" data-name="<?= $contact_phone->phone ?>" data-id="<?= $contact_phone->id ?>"><?= $contact_phone->phone ?></span>
                     <a href="#" class="edit" onclick="return false;"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>
+                    <a href="#" class="trash">
+                        <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                    </a>
                 </span>
             <?php endforeach ?>
             <span class="form-inline">

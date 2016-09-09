@@ -134,7 +134,7 @@ $k(document).ready(function(){
                     '</span>';
             $k( "input#input_add" ).parent().parent().append(htmlplus);
 
-            html =  '<span data-type="'+ type +'" data-name="'+ value +'" data-id="">'+ value +'</span>&nbsp'+
+            html =  '<span id="new_" data-type="'+ type +'" data-name="'+ value +'" data-id="">'+ value +'</span>&nbsp'+
                     '<a href="#" class="edit" onclick="return false;">'+
                         '<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>'+
                     '</a>';
@@ -150,6 +150,18 @@ $k(document).ready(function(){
                     '<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>'+
                 '</a>';
         $k( this ).parent('span').html( html );
+    });
+
+    $k( document ).on( "click", ".trash", function() {
+        if(confirm('¿Estas seguro?')){
+            id   = $k( this ).siblings("span").data("id");
+            type = $k( this ).siblings("span").data("type");
+            remove_data_contact(id, type)
+            $k( this ).parent("span").remove();
+        }
+        else{
+            return false;
+        }
     });
 });
 
@@ -190,6 +202,9 @@ function add_data_contact(type, value, contact){
     };
 
     jQuery.post("admin-ajax.php", data, function(response) {
+        var json = JSON.parse(response);
+        $k("#new_").attr("data-id", json[0].id);
+
         html = '<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>'+
         '<strong>¡Exelente!</strong> El Registro se ha guardado con Exito.';
 
@@ -227,6 +242,30 @@ function insert_comment(comment, contact){
                     +'</div>'+
                 '</div>';
         jQuery('ul#Comments-list li:first-child').html(html);
+    });
+}
+
+function remove_data_contact(id, type){
+    var data = {
+        'action' : 'remove_data_contact',
+        'id' : id,
+        'type': type,
+    };
+    jQuery.post("admin-ajax.php", data, function(response) {
+        html = '<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>'+
+        '<strong>¡Exelente!</strong> El Registro se ha Eliminado con Exito.';
+
+        liData ='<div id="result2" class="alert alert-success alert-dismissible" role="alert" style="display:none;">'+
+                '</div>';
+        $k(liData).appendTo('#result').slideDown(500);
+
+        $k('#result2').html(html).fadeIn(2000);
+        //timing the alert box to close after 5 seconds
+        window.setTimeout(function () {
+            $k(".alert").fadeTo(500, 0).slideUp(500, function () {
+                $k(this).remove();
+            });
+        }, 3000);
     });
 }
 

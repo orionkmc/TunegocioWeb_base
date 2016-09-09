@@ -29,9 +29,17 @@ final class TunegocioWebAjax {
         die();
     }
 
+    function remove_data_contact(){
+        global $wpdb;
+        $wpdb->query("DELETE FROM {$wpdb->prefix}tnw_crm_". $_POST['type'] ." WHERE `id` = ". $_POST['id']);
+    }
+
     function add_data_contact(){
         global $wpdb;
         $wpdb->query("INSERT INTO {$wpdb->prefix}tnw_crm_". $_POST['type'] ." (". $_POST['type'] .", contact) VALUES ( '". $_POST['value'] ."', '". $_POST['contact'] ."')");
+        $id = $wpdb->get_results( "SELECT MAX(id) AS id FROM {$wpdb->prefix}tnw_crm_". $_POST['type'] );
+        echo json_encode($id);
+        die();
     }
 
     function update_status(){

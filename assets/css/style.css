@@ -42,7 +42,13 @@
         margin-bottom: 0px;
         padding: 5px 0px;
     }
+    
+    /*alinear datos de contacto*/
 
+    label{
+        width: 160px;
+        text-align: right;
+    }
     /*comentarios*/
 
      a.user {
