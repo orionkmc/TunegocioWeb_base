@@ -45,7 +45,7 @@
     
     /*alinear datos de contacto*/
 
-    label{
+    .label_contact label{
         width: 160px;
         text-align: right;
     }

@@ -30,7 +30,7 @@
         <span id="result">
             
         </span>
-        <div>
+        <div class="label_contact">
             <label for="">Nombre: </label>
             <span>
                 <span data-type="contact" data-name="<?= $contacts[0]->name ?>" data-id="<?= $contacts[0]->id ?>"><?= $contacts[0]->name ?></span>
@@ -39,7 +39,7 @@
                 </a>
             </span>
         </div>
-        <div>
+        <div class="label_contact">
             <label for="">Email: </label>
             <?php foreach ($contact_emails as $contact_email): ?>
                 <span>
@@ -58,7 +58,7 @@
                 </a>
             </span>
         </div>
-        <div>
+        <div class="label_contact">
             <label for="">Telefono: </label>
             <?php foreach ($contact_phones as $contact_phone): ?>
                 <span>

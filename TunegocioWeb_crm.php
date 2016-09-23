@@ -20,8 +20,6 @@ class Tnw_Crm
 
     function define_constants()
     {
-        global $wpdb;
-
         define( 'TNW_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
         define( 'TNW_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
         define( 'TNW_VERSION', '0.0.1' );
